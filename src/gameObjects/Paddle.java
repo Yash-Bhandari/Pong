@@ -14,7 +14,7 @@ public class Paddle extends GameObject {
 
 	public Paddle(int x, int y, boolean controlled, Color color, double speed, int Player) {
 		super(x, y, controlled, color, speed);
-		width = 30;
+		width = 10;
 		height = 100;
 		this.Player = Player;
 		if (Player == 0) outside = x + width;

@@ -63,8 +63,6 @@ public class Ball extends GameObject {
 	}
 	
 	public void bounceX() {
-		if (xSpeed < 0) xSpeed -= 0.1;
-		else xSpeed += 0.1;
 		xSpeed = -xSpeed;
 	}
 	

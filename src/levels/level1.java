@@ -15,7 +15,7 @@ public class level1 {
 	public static void start(Handler handler, Input input) {
 		handler.add(new Paddle(50, 200, true, Color.white, 5, 0));
 		handler.add(new Paddle(820, 100, true, Color.WHITE, 5, 1));
-		handler.add(new Ball(10, 450, 350, false, Color.white, 5.0, Math.random() * Math.PI/2 * ((int)Math.random()-1)));
+		handler.add(new Ball(10, 450, 350, false, Color.white, 5.0, Math.PI/3));
 	}
 
 	// draws score

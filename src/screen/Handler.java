@@ -9,59 +9,64 @@ import gameObjects.Paddle;
 
 public class Handler {
 
-    public LinkedList<GameObject> objects;
-    public Paddle p1;
-    public Paddle p2;
-    public Ball ball;
-    private Input input;
+	public LinkedList<GameObject> objects;
+	public Paddle p1;
+	public Paddle p2;
+	public Ball ball;
+	private Input input;
 
-    public Handler(Input input) {
-        objects = new LinkedList<GameObject>();
-        this.input = input;
-    }
+	public Handler(Input input) {
+		objects = new LinkedList<GameObject>();
+		this.input = input;
+	}
 
-    public void add(GameObject go) {
-        if (!go.inHandler) {
-            objects.add(go);
-            go.inHandler = true;
-        }
-        if (go instanceof Paddle) {
-            Paddle a = (Paddle)go;
-            if (a.player() == 0)
-            	p1 = a;
-            if (a.player() == 1)
-            	p2 = a;
-        }
-        if (go instanceof Ball) {
-        	ball = (Ball)go;	
-        }
-    }
+	public void add(GameObject go) {
+		if (!go.inHandler) {
+			objects.add(go);
+			go.inHandler = true;
+		}
+		if (go instanceof Paddle) {
+			Paddle a = (Paddle) go;
+			if (a.player() == 0)
+				p1 = a;
+			if (a.player() == 1)
+				p2 = a;
+		}
+		if (go instanceof Ball) {
+			ball = (Ball) go;
+		}
+	}
 
-    public void updateObjects() {
+	public void updateObjects() {
 
-        for (GameObject go : objects) {
-            if (go.inUse())
-                go.update(input);
-        }
-        if (ball != null && p1 != null && p2 != null) collision();
-    }
+		for (GameObject go : objects) {
+			if (go.inUse())
+				go.update(input);
+		}
+		if (ball != null && p1 != null && p2 != null)
+			collision();
+	}
 
-    public void renderObjects(Graphics g) {
-        for (GameObject go : objects) {
-            go.render(g);
-        }
-    }
+	public void renderObjects(Graphics g) {
+		for (GameObject go : objects) {
+			go.render(g);
+		}
+	}
 
-    public void clear() {
-        objects.clear();
-    }
+	public void clear() {
+		objects.clear();
+	}
 
-    private void collision() {
-    	if (ball.getX() - ball.radius() < p1.outsideX() && ball.getY() > p1.getY() && ball.getY() < p1.getY()+p1.height()) {
-    		ball.bounceX();
-    	}
-    	if (ball.getX() + ball.radius() > p2.outsideX() && ball.getY() > p2.getY() && ball.getY() < p2.getY()+p2.height()) {
-    		ball.bounceX();
-    	}
-    }
+	private void collision() {
+		if (ball.getX() - ball.radius() <= p1.outsideX() && ball.getY() > p1.getY()
+				&& ball.getY() < p1.getY() + p1.height()) {
+			if (ball.getX() - ball.radius() > p1.outsideX() - p1.width())
+				ball.bounceX();
+		}
+		if (ball.getX() + ball.radius() >= p2.outsideX() && ball.getY() > p2.getY()
+				&& ball.getY() < p2.getY() + p2.height()) {
+			if (ball.getX() - ball.radius() < p2.outsideX() + p2.width())
+				ball.bounceX();
+		}
+	}
 }

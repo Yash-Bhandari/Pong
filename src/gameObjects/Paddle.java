@@ -58,5 +58,9 @@ public class Paddle extends GameObject {
 	public int height() {
 		return height;
 	}
+	
+	public int width() {
+		return width;
+	}
 
 }

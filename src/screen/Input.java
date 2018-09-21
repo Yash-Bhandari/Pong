@@ -49,7 +49,6 @@ public class Input implements KeyListener, MouseListener {
             keys[3] = a;
             break;
         }
-        System.out.println(keys[2]);
     }
 
     public void checkMouse() {
